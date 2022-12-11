@@ -55,8 +55,11 @@ let map;
 
         console.log(pickupLocation);
         //  get the local weather, find nearby restaurants, movies
-        // getWeather(pickupLocation, unicorn)
-
+        lat searchText = document.getElementById('search').value;
+        if (searchText.length === 0)
+            getWeather(pickupLocation, unicorn)
+        else
+            bookSearch(searchText);
         animateArrival(function animateCallback() {
             displayUpdate(unicorn.Name + ' has arrived. Giddy up!', unicorn.Color);
             WildRydes.map.unsetLocation();
@@ -179,6 +182,7 @@ function displayUpdate(text, color='green') {
     $('#updates').prepend($(`<li style="background-color:${color}">${text}</li>`));
 }
 
+
 function getWeather(loc) {
     let url = 'https://api.openweathermap.org/data/2.5/onecall?lat=${loc.latitude}&lon=${loc.longitude}&exclude=minutely,hourly&appid=a099a51a6362902523bbf6495a0818aa';
     fetch(url)
@@ -205,3 +209,4 @@ function getWeather(loc) {
         
         });
 }
+    
