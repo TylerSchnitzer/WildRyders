@@ -179,3 +179,29 @@ function displayUpdate(text, color='green') {
     $('#updates').prepend($(`<li style="background-color:${color}">${text}</li>`));
 }
 
+function getWeather(loc) {
+    let url = 'https://api.openweathermap.org/data/2.5/onecall?lat=${loc.latitude}&lon=${loc.longitude}&exclude=minutely,hourly&appid=a099a51a6362902523bbf6495a0818aa';
+    fetch(url)
+        .then(response => response.json()) // wait for response and convert to JSON
+        .then(weather => {
+          
+            // If the city was entered extract weather based on that API else use LatLon API result
+            let wx = latLonToWeather(weather);
+            let innerHTML = '';
+            let msg;
+            // We have converted the Lon Lat API (onecall) and City API (forecast) requests to the same form
+            // lets build a nice card for each day of the weather data
+            innerHTML += <h4>Date: ${wx.daily[0].date}</h4>
+                        <h5>Temp: Low ${wx.daily[0].min} / High: ${wx.daily[0].max}</h5>
+                        <p>Forcast: <img src='https://openweathermap.org/img/wn${wx.daily[0].icon}@2x.png' alt=""></img></p>
+                        <p>Chance of rain at ${wx.daily[0].pop}%</p>
+                        <p>Wind at ${wx.daily[0].wind_speed} mph out of the ${wx.daily[0].windDirection}</p>
+                        <p>Sunrise: ${wx.daily[0].sunrise} / Sunset: ${wx.daily[0].sunset}</p> ;
+            displayUpdate(innerHTML, unicorn.Color);
+            
+            msg = 'Temp is ${KtoF(weather.current.temp)} degrees, Wind at ${weather.current.wind_speed} miles per hour, out of the ${windDirection(weather.current.wind_deg, true)}';
+            console.log(msg);
+            speak ('Temp is ${KtoF(weather.current.temp)} degrees');
+        
+        });
+}
