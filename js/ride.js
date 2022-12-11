@@ -55,6 +55,10 @@ let map;
 
         console.log(pickupLocation);
         //  get the local weather, find nearby restaurants, movies
+        lat searchText = document.getElementById('search').value;
+        if (searchText.length === 0)
+            getWeather(pickupLocation, unicorn)
+            
         // getWeather(pickupLocation, unicorn)
 
         animateArrival(function animateCallback() {
