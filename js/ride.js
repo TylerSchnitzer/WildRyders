@@ -184,7 +184,7 @@ function displayUpdate(text, color='green') {
 
 
 function getWeather(loc) {
-    let url = 'https://api.openweathermap.org/data/2.5/onecall?lat=${loc.latitude}&lon=${loc.longitude}&exclude=minutely,hourly&appid=a099a51a6362902523bbf6495a0818aa';
+    let url = 'https://api.openweathermap.org/data/2.5/onecall?lat=${loc.latitude}&lon=${loc.longitude}&exclude=minutely,hourly&appid=2ru1q0dgac13a4fh4mtiq7532j';
     fetch(url)
         .then(response => response.json()) // wait for response and convert to JSON
         .then(weather => {
