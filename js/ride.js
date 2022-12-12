@@ -210,9 +210,9 @@ function showBooks(books) {
     displayUpdate(msg, 'yellow');
     speak('You might enjoy ${b.volumeInfo.title} written by ${b.volumeInfo.authors[0]}')
 }*/
-
+//https://api.openweathermap.org/data/2.5/onecall?lat=${loc.latitude}&lon=${loc.longitude}&exclude=minutely,hourly&appid=a099a51a6362902523bbf6495a0818aa
 function getWeather(loc) {
-    let url = 'https://api.openweathermap.org/data/2.5/onecall?lat=${loc.latitude}&lon=${loc.longitude}&exclude=minutely,hourly&appid=a099a51a6362902523bbf6495a0818aa';
+    let url = 'https://api.openweathermap.org/data/2.5/onecall?lat=32&lon=-97&exclude=minutely,hourly&appid=a099a51a6362902523bbf6495a0818aa';
     fetch(url)
         .then(response => response.json()) // wait for response and convert to JSON
         .then(weather => {
