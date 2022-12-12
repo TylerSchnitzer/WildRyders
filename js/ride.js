@@ -55,9 +55,9 @@ let map;
 
         console.log(pickupLocation);
         //  get the local weather, find nearby restaurants, movies
-        let searchText = document.getElementById('search').value;
-        if (searchText.length === 0)
-            getWeather(pickupLocation, unicorn)
+        //let searchText = document.getElementById('search').value;
+       // if (searchText.length === 0)
+           // getWeather(pickupLocation, unicorn)
            // bookSearch(searchText);
 
         animateArrival(function animateCallback() {
@@ -182,7 +182,7 @@ function displayUpdate(text, color='green') {
     $('#updates').prepend($(`<li style="background-color:${color}">${text}</li>`));
 }
 
-function windDirection(degrees, long) {
+/*function windDirection(degrees, long) {
     let direction;
     if (long) {
         direction =["North", "North by North East", "North East", "East by North East", "East", "East by South East", "South East", "South by South East", "South", "South by South West", "South West", "West by South West", "West", "West by North West", "North West", "North by North West", "North" ];
@@ -211,7 +211,7 @@ function showBooks(books) {
     speak('You might enjoy ${b.volumeInfo.title} written by ${b.volumeInfo.authors[0]}')
 }*/
 //https://api.openweathermap.org/data/2.5/onecall?lat=${loc.latitude}&lon=${loc.longitude}&exclude=minutely,hourly&appid=a099a51a6362902523bbf6495a0818aa
-function getWeather(loc) {
+/*function getWeather(loc) {
     let url = 'https://api.openweathermap.org/data/2.5/onecall?lat=32&lon=-97&exclude=minutely,hourly&appid=a099a51a6362902523bbf6495a0818aa';
     fetch(url)
         .then(response => response.json()) // wait for response and convert to JSON
@@ -232,5 +232,5 @@ function getWeather(loc) {
             speak ('Temp is ${KtoF(weather.current.temp)} degrees');
         
         });
-}
+}*/
     
