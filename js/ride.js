@@ -55,10 +55,10 @@ let map;
 
         console.log(pickupLocation);
         //  get the local weather, find nearby restaurants, movies
-        let searchText = document.getElementById('search').value;
-        if (searchText.length === 0)
+        //let searchText = document.getElementById('search').value;
+        //if (searchText.length === 0)
             //getWeather(pickupLocation, unicorn)
-            bookSearch(searchText);
+           // bookSearch(searchText);
 
         animateArrival(function animateCallback() {
             displayUpdate(unicorn.Name + ' has arrived. Giddy up!', unicorn.Color);
@@ -182,7 +182,7 @@ function displayUpdate(text, color='green') {
     $('#updates').prepend($(`<li style="background-color:${color}">${text}</li>`));
 }
 
-function bookSearch(searchText) {
+/*function bookSearch(searchText) {
     fetch('https://www.googleapis.com/books/v1/volumes?q=${searchText}')
     .then(resp => resp.json())
     .then(books => showBooks(books));
@@ -197,7 +197,7 @@ function showBooks(books) {
     displayUpdate(msg, 'yellow');
     speak('You might enjoy ${b.volumeInfo.title} written by ${b.volumeInfo.authors[0]}')
 }
-/*function getWeather(loc) {
+function getWeather(loc) {
     let url = 'https://api.openweathermap.org/data/2.5/onecall?lat=${loc.latitude}&lon=${loc.longitude}&exclude=minutely,hourly&appid=a099a51a6362902523bbf6495a0818aa';
     fetch(url)
         .then(response => response.json()) // wait for response and convert to JSON
