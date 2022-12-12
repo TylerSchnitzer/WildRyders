@@ -55,9 +55,9 @@ let map;
 
         console.log(pickupLocation);
         //  get the local weather, find nearby restaurants, movies
-        //let searchText = document.getElementById('search').value;
-        //if (searchText.length === 0)
-            //getWeather(pickupLocation, unicorn)
+        let searchText = document.getElementById('search').value;
+        if (searchText.length === 0)
+            getWeather(pickupLocation, unicorn)
            // bookSearch(searchText);
 
         animateArrival(function animateCallback() {
@@ -182,6 +182,19 @@ function displayUpdate(text, color='green') {
     $('#updates').prepend($(`<li style="background-color:${color}">${text}</li>`));
 }
 
+function windDirection(degrees, long) {
+    let direction;
+    if (long) {
+        direction =["North", "North by North East", "North East", "East by North East", "East", "East by South East", "South East", "South by South East", "South", "South by South West", "South West", "West by South West", "West", "West by North West", "North West", "North by North West", "North" ];
+
+    }
+    else
+        direction = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW", "N"];
+    
+    degrees = Math.round(degrees + 11.25) % 360;
+    let index = Math.floor(degrees / 22.5);
+    return direction[index];
+}
 /*function bookSearch(searchText) {
     fetch('https://www.googleapis.com/books/v1/volumes?q=${searchText}')
     .then(resp => resp.json())
@@ -196,7 +209,8 @@ function showBooks(books) {
     let msg = <ing src=${b.volumeInfo.imageLinks.smallThumbnail} height='120px' alt=""><br>You might enjoy <a href="${b.saleInfo.buyLink}">${b.volumeInfo.title}</a>written by ${b.volumeInfo.authors[0]}</br><br>${b.volumeInfo.pageCount} pages. Purchase for ${b.saleInfo.listPrice.amount}</br><br>${b.volumeInfo.description.substring(8,288)}';</br></ing>
     displayUpdate(msg, 'yellow');
     speak('You might enjoy ${b.volumeInfo.title} written by ${b.volumeInfo.authors[0]}')
-}
+}*/
+
 function getWeather(loc) {
     let url = 'https://api.openweathermap.org/data/2.5/onecall?lat=${loc.latitude}&lon=${loc.longitude}&exclude=minutely,hourly&appid=a099a51a6362902523bbf6495a0818aa';
     fetch(url)
@@ -217,5 +231,5 @@ function getWeather(loc) {
             speak ('Temp is ${KtoF(weather.current.temp)} degrees');
         
         });
-}*/
+}
     
