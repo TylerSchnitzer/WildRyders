@@ -182,7 +182,21 @@ function displayUpdate(text, color='green') {
     $('#updates').prepend($(`<li style="background-color:${color}">${text}</li>`));
 }
 
+function bookSearch(searchText) {
+    fetch('https://www.googleapis.com/books/v1/volumes?q=${searchText}')
+    .then(resp => resp.json())
+    .then(books => showBooks(books));
 
+}
+
+function showBooks(books) {
+    let b = books.items[0];
+    console.log(b);
+    if (b.saleInfo.listPrice === undefined) b.saleInfo.listPrice = {amount: 6.66}
+    let msg = <ing src=${b.volumeInfo.imageLinks.smallThumbnail} height='120px' alt=""><br>You might enjoy <a href="${b.saleInfo.buyLink}">${b.volumeInfo.title}</a>written by ${b.volumeInfo.authors[0]}</br><br>${b.volumeInfo.pageCount} pages. Purchase for ${b.saleInfo.listPrice.amount}</br><br>${b.volumeInfo.description.substring(8,288)}';</br></ing>
+    displayUpdate(msg, 'yellow');
+    speak('You might enjoy ${b.volumeInfo.title} written by ${b.volumeInfo.authors[0]}')
+}
 /*function getWeather(loc) {
     let url = 'https://api.openweathermap.org/data/2.5/onecall?lat=${loc.latitude}&lon=${loc.longitude}&exclude=minutely,hourly&appid=a099a51a6362902523bbf6495a0818aa';
     fetch(url)
